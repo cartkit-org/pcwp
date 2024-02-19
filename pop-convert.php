@@ -54,7 +54,7 @@ function pop_convert_page() {
     $token = get_option('pop_convert_plugin_token', '');
 
     // Check if the form has been submitted
-    if (isset($_POST['pop_convert_plugin_token'], $_POST['_wpnonce_pop_convert_plugin_nonce']) && wp_verify_nonce($_POST['_wpnonce_pop_convert_plugin_nonce'], 'pop_convert_plugin_action')) {
+    if (isset($_POST['pop_convert_plugin_token'], $_POST['_wpnonce_pop_convert_plugin_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce_pop_convert_plugin_nonce'], 'pop_convert_plugin_action')))) {
         $submitted_token = sanitize_text_field($_POST['pop_convert_plugin_token']);
 
         // Validate the token
